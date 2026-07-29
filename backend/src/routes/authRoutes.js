@@ -10,6 +10,7 @@ router.post("/register", validateRequest(registerSchema), register);
 router.post("/login", validateRequest(loginSchema),login);
 
 router.post("/logout", logout);
+router.get("/me", authMiddleware, me); 
 
 router.get("/me", authMiddleware, me);
 
