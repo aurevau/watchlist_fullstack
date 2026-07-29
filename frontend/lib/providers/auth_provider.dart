@@ -104,6 +104,7 @@ class AuthProvider with ChangeNotifier {
     if (savedToken == null) return;
 
     try {
+      print('Requesting URL: $meEndpoint');
       final response = await http.get(
         Uri.parse(meEndpoint),
         headers: {'Authorization': 'Bearer $savedToken'},
@@ -115,6 +116,8 @@ class AuthProvider with ChangeNotifier {
         _token = savedToken;
       } else {
         _errorMessage = body['error'] ?? "Token ogiltig eller utgången";
+        print('Auto-login status: ${response.statusCode}');
+        print('Auto-login body: ${response.body}');
       }
     } catch (error) {
       _errorMessage = '$error: Token ogiltig eller utgången';
