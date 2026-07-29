@@ -98,6 +98,33 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  Future<void> tryAutoLogin() async {
+    final prefs = await SharedPreferences.getInstance();
+    final savedToken = prefs.getString('auth_token');
+    if (savedToken == null) return;
+
+    try {
+      final response = await http.get(
+        Uri.parse(meEndpoint),
+        headers: {'Authorization': 'Bearer $savedToken'},
+      );
+
+      final body = json.decode(response.body);
+      if (response.statusCode == 200) {
+        _user = User.fromJson(body['data']['user']);
+        _token = savedToken;
+      } else {
+        _errorMessage = body['error'] ?? "Token ogiltig eller utgången";
+      }
+    } catch (error) {
+      _errorMessage = '$error: Token ogiltig eller utgången';
+
+      print('Autologin misslyckades: $error');
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+  }
+
   Future<void> _saveToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('auth_token', token);
