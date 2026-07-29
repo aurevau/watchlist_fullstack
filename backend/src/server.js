@@ -28,10 +28,7 @@ app.use("/watchlist", watchListRoutes);
 app.use(notFound);
 app.use(errorHandler); 
 
-app.get("/hello", (req, res) => {
-    res.json({message: "Hello World"});
 
-});
 
 const PORT = 5001; 
 
