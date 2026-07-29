@@ -22,7 +22,10 @@ class CustomButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: Center(
-          child: Text(buttonText, style: AppTextStyles.buttonTextWhite),
+          child: GestureDetector(
+            onTap: onPressedButton,
+            child: Text(buttonText, style: AppTextStyles.buttonTextWhite),
+          ),
         ),
       ),
     );
