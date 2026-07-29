@@ -28,10 +28,16 @@ class AppTextStyles {
     fontSize: 14,
   );
 
-  static const TextStyle buttonTextWhite = TextStyle(
-    color: Colors.white,
+  static const TextStyle linkTextBlue = TextStyle(
+    color: AppColors.primary,
     fontWeight: FontWeight.w500,
     fontSize: 14,
+  );
+
+  static const TextStyle buttonTextWhite = TextStyle(
+    color: Colors.white,
+    fontWeight: FontWeight.w700,
+    fontSize: 15,
   );
 
   static const TextStyle navbarText = TextStyle(
@@ -42,7 +48,7 @@ class AppTextStyles {
 
   static const TextStyle introTitle = TextStyle(
     color: AppColors.textColor,
-    fontWeight: FontWeight.w500,
+    fontWeight: FontWeight.w700,
     fontSize: 38,
   );
 
