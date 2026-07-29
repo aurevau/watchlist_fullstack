@@ -12,5 +12,7 @@ router.post("/login", validateRequest(loginSchema),login);
 router.post("/logout", logout);
 router.get("/me", authMiddleware, me); 
 
+router.get("/me", authMiddleware, me);
+
 export default router; 
 
