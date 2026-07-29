@@ -1,0 +1,29 @@
+# Root-level ignores. Each subproject keeps its own .gitignore:
+# backend/.gitignore, frontend/.gitignore, frontend/<platform>/.gitignore
+
+# Build artifacts produced at the repo root (e.g. iOS SourcePackages)
+build/
+
+# Environment variables and secrets — defensive catch-all for every
+# subdirectory, so a new service can never leak one before it has its
+# own .gitignore. Templates without real values stay tracked.
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Keys and certificates
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+
+# Dependencies
+node_modules/
+
+# OS and editor cruft
+.DS_Store
+Thumbs.db
+*.swp
