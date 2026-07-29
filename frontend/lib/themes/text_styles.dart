@@ -46,6 +46,12 @@ class AppTextStyles {
     fontSize: 14,
   );
 
+  static const TextStyle errorText = TextStyle(
+    color: AppColors.markFavorite,
+    fontWeight: FontWeight.w400,
+    fontSize: 14,
+  );
+
   static const TextStyle introTitle = TextStyle(
     color: AppColors.textColor,
     fontWeight: FontWeight.w700,
