@@ -6,7 +6,7 @@ import {Prisma} from "@prisma/client";
  */
 
 const notFound = (req, res, next) => {
-    const error = new Error(`Route ${req.originalURL} not found`);
+    const error = new Error(`Route ${req.originalUrl} not found`);
     error.statusCode = 404; 
     next(error); 
 };
