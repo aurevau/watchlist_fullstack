@@ -8,3 +8,10 @@ const String addToWatchlistEndpoint = '$backendUrl/watchlist';
 
 String deleteFromWatchlistEndpoint(String id) => '$backendUrl/watchlist/$id';
 String updateWatchlistEndpoint(String id) => '$backendUrl/watchlist/$id';
+
+const String moviesEndpoint = '$backendUrl/movies';
+
+String movieDetailEndpoint(String id) => '$backendUrl/movies/$id';
+
+String searchMoviesEndpoint(String query) =>
+    '$backendUrl/movies/search?query=${Uri.encodeQueryComponent(query)}';
