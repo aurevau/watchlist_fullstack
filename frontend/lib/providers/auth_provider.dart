@@ -72,6 +72,7 @@ class AuthProvider with ChangeNotifier {
         _user = User.fromJson(body['data']['user']);
         _token = body['data']['token'];
         await _saveToken(_token!);
+        await refreshUser();
         _isLoading = false;
         WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
         return true;
@@ -96,6 +97,12 @@ class AuthProvider with ChangeNotifier {
     } catch (error) {
       print('Logout anropet misslyckades: $error');
     }
+    _user = null;
+    _token = null;
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('auth_token');
+    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
   }
 
   Future<void> tryAutoLogin() async {
@@ -123,6 +130,26 @@ class AuthProvider with ChangeNotifier {
       _errorMessage = '$error: Token ogiltig eller utgången';
 
       print('Autologin misslyckades: $error');
+    }
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+  }
+
+  Future<void> refreshUser() async {
+    if (_token == null) return;
+
+    try {
+      final response = await http.get(
+        Uri.parse(meEndpoint),
+        headers: {'Authorization': 'Bearer $_token'},
+      );
+
+      if (response.statusCode == 200) {
+        final body = json.decode(response.body);
+        _user = User.fromJson(body['data']['user']);
+      }
+    } catch (error) {
+      print('Kunde inte uppdatera användardata: $error');
     }
 
     WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
