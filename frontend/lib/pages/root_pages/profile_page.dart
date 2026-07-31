@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/root_pages/settings_page.dart';
 import 'package:frontend/themes/text_styles.dart';
 
 class ProfilePage extends StatefulWidget {
@@ -17,7 +18,15 @@ class ProfilePageState extends State<ProfilePage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Profil', style: AppTextStyles.pageTitle),
-            Icon(Icons.settings, size: 30),
+            IconButton(
+              icon: Icon(Icons.settings, size: 30),
+              onPressed: () {
+                Navigator.of(
+                  context,
+                  rootNavigator: true,
+                ).push(MaterialPageRoute(builder: (_) => const SettingsPage()));
+              },
+            ),
           ],
         ),
       ),
