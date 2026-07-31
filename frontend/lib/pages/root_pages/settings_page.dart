@@ -27,14 +27,25 @@ class _SettingsPageState extends State<SettingsPage> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            mainAxisAlignment: .end,
             children: [
               CustomButton(
                 buttonText: 'LOGGA UT',
                 onPressedButton: () async {
                   print('Log out button pressed');
                   await context.read<AuthProvider>().logout();
+                  if (context.mounted) {
+                    Navigator.of(
+                      context,
+                      rootNavigator: true,
+                    ).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (_) => const LoginPage()),
+                      (route) => false,
+                    );
+                  }
                 },
               ),
+              SizedBox(height: 50),
             ],
           ),
         ),
