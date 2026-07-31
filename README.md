@@ -129,4 +129,5 @@ Potential features for later/things I am currently working on:
 * Add friends and see their watchlist
 * Recommendations based on watch history
 * Automated tests (backend and frontend)
+* Put more energy into UI and UX
 
