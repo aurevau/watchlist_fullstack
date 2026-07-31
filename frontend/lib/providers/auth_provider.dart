@@ -96,6 +96,12 @@ class AuthProvider with ChangeNotifier {
     } catch (error) {
       print('Logout anropet misslyckades: $error');
     }
+    _user = null;
+    _token = null;
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('auth_token');
+    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
   }
 
   Future<void> tryAutoLogin() async {
