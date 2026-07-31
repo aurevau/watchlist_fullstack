@@ -3,7 +3,9 @@ import 'package:frontend/components/input_text_field.dart';
 import 'package:frontend/components/movie_card.dart';
 import 'package:frontend/models/movie.dart';
 import 'package:frontend/pages/root_pages/movie_detail_page.dart';
+import 'package:frontend/providers/auth_provider.dart';
 import 'package:frontend/providers/movie_provider.dart';
+import 'package:frontend/providers/watchlist_provider.dart';
 import 'package:frontend/themes/text_styles.dart';
 import 'package:provider/provider.dart';
 
@@ -92,6 +94,8 @@ class HomePageState extends State<HomePage> {
   }
 
   Widget _buildMovieGrid(List<Movie> movies) {
+    final token = Provider.of<AuthProvider>(context, listen: false).token;
+
     return GridView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -100,7 +104,7 @@ class HomePageState extends State<HomePage> {
         crossAxisCount: 2,
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
-        childAspectRatio: 0.6,
+        childAspectRatio: 0.55,
       ),
       itemBuilder: (_, i) {
         final movie = movies[i];
