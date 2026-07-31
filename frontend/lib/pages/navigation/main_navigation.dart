@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/auth_pages/login_page.dart';
 import 'package:frontend/pages/root_pages/home_page.dart';
 import 'package:frontend/pages/root_pages/profile_page.dart';
 import 'package:frontend/pages/root_pages/watchlist_page.dart';
+import 'package:frontend/providers/auth_provider.dart';
 import 'package:frontend/themes/colors.dart';
+import 'package:provider/provider.dart';
 
 class MainNavigation extends StatefulWidget {
   final int selectedIndex;
@@ -98,6 +101,12 @@ class _MainNavigationState extends State<MainNavigation> {
 
   @override
   Widget build(BuildContext context) {
+    final authProvider = context.watch<AuthProvider>();
+
+    if (!authProvider.isLoggedIn) {
+      return const LoginPage();
+    }
+
     return WillPopScope(
       onWillPop: () async {
         final isFirstRouteInCurrentTab = !await _navigatorKeys[_selectedIndex]
