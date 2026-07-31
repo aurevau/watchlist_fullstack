@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/root_pages/settings_page.dart';
+import 'package:frontend/providers/auth_provider.dart';
 import 'package:frontend/themes/text_styles.dart';
+import 'package:provider/provider.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -11,7 +13,15 @@ class ProfilePage extends StatefulWidget {
 
 class ProfilePageState extends State<ProfilePage> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final authProvider = context.watch<AuthProvider>();
+    final user = authProvider.user;
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
@@ -30,7 +40,17 @@ class ProfilePageState extends State<ProfilePage> {
           ],
         ),
       ),
-      body: Center(child: Text("")),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(user?.email ?? 'Ingen email hittad'),
+            SizedBox(height: 12),
+            Text(user?.name ?? 'Ingen användare hittad'),
+          ],
+        ),
+      ),
     );
   }
 }

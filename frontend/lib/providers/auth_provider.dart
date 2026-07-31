@@ -72,6 +72,7 @@ class AuthProvider with ChangeNotifier {
         _user = User.fromJson(body['data']['user']);
         _token = body['data']['token'];
         await _saveToken(_token!);
+        await refreshUser();
         _isLoading = false;
         WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
         return true;
