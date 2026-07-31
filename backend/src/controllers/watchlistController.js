@@ -118,5 +118,20 @@ const updateWatchlistItem = async (req, res) => {
     });
 };
 
+const getUserWatchlist = async (req, res) => {
+    const watchlistItems = await prisma.watchListItem.findMany({
+        where: {userId: req.user.id},
+        include: {movie: true},
+        orderBy: {createdAt: "desc"},
+    });
 
-export {addToWatchList, removeFromWatchList, updateWatchlistItem}; 
+    res.status(200).json({
+        status: "success",
+        data: {watchlistItems},
+    });
+};
+
+
+
+
+export {addToWatchList, removeFromWatchList, updateWatchlistItem, getUserWatchlist}; 
