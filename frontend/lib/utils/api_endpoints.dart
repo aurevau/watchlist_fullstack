@@ -15,3 +15,5 @@ String movieDetailEndpoint(String id) => '$backendUrl/movies/$id';
 
 String searchMoviesEndpoint(String query) =>
     '$backendUrl/movies/search?query=${Uri.encodeQueryComponent(query)}';
+
+const String watchlistEndpoint = '$backendUrl/watchlist';
