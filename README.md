@@ -3,9 +3,9 @@ I am currently building full-stack app (Flutter + Node.js/Express/PostgreSQL) th
 I am building this to practice connecting the Flutter frontend to a real backend, and to understand how the backend itself is built. 
 
 ## Screenshots
-<img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 42 46" src="https://github.com/user-attachments/assets/97f42fb7-9ffc-4e7a-af74-22afda5ba1ca" /><img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 02" src="https://github.com/user-attachments/assets/44a91111-ec99-40e7-b529-2d3c301541a9" />
-<img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 11" src="https://github.com/user-attachments/assets/24add010-3dca-40af-a0ef-ec98b8704c39" /><img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 17" src="https://github.com/user-attachments/assets/bfc6c38f-869c-4fac-8f40-985a149a173d" />
-<img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 20" src="https://github.com/user-attachments/assets/20a48394-f5eb-43f5-83bf-74f62eddf04a" /><img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 23" src="https://github.com/user-attachments/assets/638015aa-8c4b-4a1f-979f-f09747ab5fcf" />
+<img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 42 46" src="https://github.com/user-attachments/assets/97f42fb7-9ffc-4e7a-af74-22afda5ba1ca" /> <img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 02" src="https://github.com/user-attachments/assets/44a91111-ec99-40e7-b529-2d3c301541a9" />
+<img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 11" src="https://github.com/user-attachments/assets/24add010-3dca-40af-a0ef-ec98b8704c39" /> <img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 17" src="https://github.com/user-attachments/assets/bfc6c38f-869c-4fac-8f40-985a149a173d" />
+<img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 20" src="https://github.com/user-attachments/assets/20a48394-f5eb-43f5-83bf-74f62eddf04a" /> <img width="250" height="544" alt="Simulator Screenshot - iPhone 17 Pro - 2026-07-31 at 21 43 23" src="https://github.com/user-attachments/assets/638015aa-8c4b-4a1f-979f-f09747ab5fcf" />
 
 
 ## Features
