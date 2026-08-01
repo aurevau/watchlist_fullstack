@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/pages/auth_pages/auth_wrapper.dart';
+import 'package:frontend/pages/auth_pages/login_page.dart';
+import 'package:frontend/pages/auth_pages/register_page.dart';
+import 'package:frontend/providers/auth_provider.dart';
+import 'package:frontend/providers/movie_provider.dart';
+import 'package:frontend/providers/watchlist_provider.dart';
+import 'package:frontend/themes/theme.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => AuthProvider()),
+        ChangeNotifierProvider(create: (_) => MovieProvider()),
+        ChangeNotifierProvider(create: (_) => WatchlistProvider()),
+      ],
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatelessWidget {
@@ -9,12 +26,6 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
+    return MaterialApp(theme: AppTheme.lightTheme, home: AuthWrapper());
   }
 }

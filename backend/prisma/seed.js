@@ -14,7 +14,7 @@ const movies = [
     releaseYear: 1999,
     genres: ["Action", "Sci-Fi"],
     runTime: 136,
-    posterUrl: "https://example.com/matrix.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9wWk_t27UntaeDxSbOvBS6oYqaGi8B4WrXb5C8RiMBg&s=10",
     createdBy: userId,
   },
   {
@@ -24,7 +24,7 @@ const movies = [
     releaseYear: 2010,
     genres: ["Action", "Sci-Fi", "Thriller"],
     runTime: 148,
-    posterUrl: "https://example.com/inception.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-8_uZWPkFTz_mlA8Jvr4nqI3rKFsOmoyhgPCbdsVL8w&s=10",
     createdBy: userId,
   },
   {
@@ -33,7 +33,7 @@ const movies = [
     releaseYear: 2008,
     genres: ["Action", "Crime", "Drama"],
     runTime: 152,
-    posterUrl: "https://example.com/darkknight.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZeVbJO7aDKXGuVYobj3Cf-y3vi3mU8kHYKOiDvakrHA&s=10",
     createdBy: userId,
   },
   {
@@ -42,7 +42,7 @@ const movies = [
     releaseYear: 1994,
     genres: ["Crime", "Drama"],
     runTime: 154,
-    posterUrl: "https://example.com/pulpfiction.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbJ5yLYK8uz5ZSpjDK8LJvWN5vkMFJeTWnJOLKjtLEkg&s=10",
     createdBy: userId,
   },
   {
@@ -51,7 +51,7 @@ const movies = [
     releaseYear: 2014,
     genres: ["Adventure", "Drama", "Sci-Fi"],
     runTime: 169,
-    posterUrl: "https://example.com/interstellar.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq0Fc5dVmv4LJ0oO6BPsuP_GRPY7eNzOzFQnD43vrsUA&s=10",
     createdBy: userId,
   },
   {
@@ -60,7 +60,7 @@ const movies = [
     releaseYear: 1994,
     genres: ["Drama"],
     runTime: 142,
-    posterUrl: "https://example.com/shawshank.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6sch9oxKCVFnGGErPSqUkiv80A5dDMD_C-0OuUXldhQ&s=10",
     createdBy: userId,
   },
   {
@@ -70,7 +70,7 @@ const movies = [
     releaseYear: 1999,
     genres: ["Drama"],
     runTime: 139,
-    posterUrl: "https://example.com/fightclub.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtWRbioH82ojFeJWWww0_-Jv5S4grmxdHYQ6A8UG71mw&s=10",
     createdBy: userId,
   },
   {
@@ -80,7 +80,7 @@ const movies = [
     releaseYear: 1994,
     genres: ["Drama", "Romance"],
     runTime: 142,
-    posterUrl: "https://example.com/forrestgump.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8ZbMYhT6dK1T-rsio7-WRk9HgkVSslHjhYfd05ah4MQ&s=10",
     createdBy: userId,
   },
   {
@@ -90,7 +90,7 @@ const movies = [
     releaseYear: 1972,
     genres: ["Crime", "Drama"],
     runTime: 175,
-    posterUrl: "https://example.com/godfather.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZ6HTBVahyli0o4Ob3LNfwKUDH9-kB3EUIAa9zRzLfiw&s=10",
     createdBy: userId,
   },
   {
@@ -99,7 +99,7 @@ const movies = [
     releaseYear: 1990,
     genres: ["Biography", "Crime", "Drama"],
     runTime: 146,
-    posterUrl: "https://example.com/goodfellas.jpg",
+    posterUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCHhO_-Z2tceX_O56yDlmJZQQKgHEv7HKgUapd2NaqEQ&s=10",
     createdBy: userId,
   },
 ];
@@ -119,6 +119,20 @@ const main = async () => {
     console.log("Seeding completed");
 
 }; 
+
+// const main = async () => {
+//     console.log("Rensar befintliga filmer...");
+//     await prisma.movie.deleteMany({});
+
+//     console.log("Seeding movies...");
+//     for (const movie of movies) {
+//         await prisma.movie.create({
+//             data: movie,
+//         });
+//         console.log(`Created movie: ${movie.title}`);
+//     }
+//     console.log("Seeding completed");
+// };
 
 main()
   .catch((err) => {
