@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:frontend/components/custom_button.dart';
 import 'package:frontend/components/input_text_field.dart';
 import 'package:frontend/components/link_footer.dart';
-import 'package:frontend/pages/auth_pages/login_page.dart';
 import 'package:frontend/pages/navigation/main_navigation.dart';
 import 'package:frontend/providers/auth_provider.dart';
 import 'package:frontend/themes/text_styles.dart';

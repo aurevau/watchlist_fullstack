@@ -4,9 +4,7 @@ import 'package:frontend/components/input_text_field.dart';
 import 'package:frontend/components/link_footer.dart';
 import 'package:frontend/pages/auth_pages/register_page.dart';
 import 'package:frontend/pages/navigation/main_navigation.dart';
-import 'package:frontend/pages/root_pages/home_page.dart';
 import 'package:frontend/providers/auth_provider.dart';
-import 'package:frontend/themes/colors.dart';
 import 'package:frontend/themes/text_styles.dart';
 import 'package:provider/provider.dart';
 
