@@ -139,7 +139,7 @@ class _MainNavigationState extends State<MainNavigation> {
               decoration: BoxDecoration(
                 border: Border(
                   top: BorderSide(
-                    color: AppColors.primary.withOpacity(0.1),
+                    color: AppColors.primary.withValues(alpha: 0.1),
                     width: 1,
                   ),
                 ),
