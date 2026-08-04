@@ -5,13 +5,12 @@ import 'package:frontend/models/movie.dart';
 import 'package:frontend/pages/root_pages/movie_detail_page.dart';
 import 'package:frontend/providers/auth_provider.dart';
 import 'package:frontend/providers/movie_provider.dart';
-import 'package:frontend/providers/watchlist_provider.dart';
 import 'package:frontend/themes/text_styles.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   final ScrollController controller;
-  const HomePage({Key? key, required this.controller}) : super(key: key);
+  const HomePage({super.key, required this.controller});
 
   @override
   State<HomePage> createState() => HomePageState();
@@ -67,6 +66,9 @@ class HomePageState extends State<HomePage> {
                       hintText: 'Sök efter filmer...',
                       isPassword: false,
                       controller: _searchController,
+                      onChanged: (value) {
+                        context.read<MovieProvider>().searchMovies(value);
+                      },
                     ),
                   ),
                   const SizedBox(width: 8),
