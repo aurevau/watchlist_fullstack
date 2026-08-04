@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/models/movie.dart';
+import 'package:frontend/models/watchlist_form_result.dart';
+import 'package:frontend/pages/root_pages/add_to_watchlist_sheet.dart';
 import 'package:frontend/providers/auth_provider.dart';
 import 'package:frontend/providers/watchlist_provider.dart';
 import 'package:frontend/themes/colors.dart';
@@ -28,7 +30,7 @@ class MovieCard extends StatelessWidget {
           ),
           clipBehavior: Clip.antiAlias,
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 8),
+            padding: const EdgeInsets.only(bottom: 8, left: 8, right: 8),
             child: Column(
               children: [
                 Row(
@@ -49,23 +51,40 @@ class MovieCard extends StatelessWidget {
                         final itemId = watchlistProvider.getWatchlistItemId(
                           movie.id,
                         );
+
                         if (itemId != null) {
                           await watchlistProvider.removeFromWatchlist(
                             token,
                             itemId,
                           );
                         } else {
-                          await watchlistProvider.addToWatchlist(
-                            token,
-                            movie.id,
-                          );
+                          final result =
+                              await showModalBottomSheet<WatchlistFormResult>(
+                                context: context,
+                                isScrollControlled: true,
+                                builder: (_) => const AddToWatchlistSheet(),
+                              );
+                          if (result != null) {
+                            await watchlistProvider.addToWatchlist(
+                              token,
+                              movie.id,
+                              status: result.status,
+                              rating: result.rating,
+                              notes: result.notes,
+                            );
+                          } else {
+                            await watchlistProvider.addToWatchlist(
+                              token,
+                              movie.id,
+                            );
+                          }
                         }
                       },
                     ),
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: AspectRatio(
                     aspectRatio: 2 / 3,
                     child: movie.posterUrl != null
@@ -89,7 +108,7 @@ class MovieCard extends StatelessWidget {
 
                 Text(
                   movie.title,
-                  maxLines: 2,
+                  maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   style: AppTextStyles.buttonTextBlack,
                 ),

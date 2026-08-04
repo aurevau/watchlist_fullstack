@@ -37,13 +37,15 @@ class WatchlistProvider with ChangeNotifier {
     }
 
     _isLoading = false;
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
   }
 
   Future<bool> addToWatchlist(
     String token,
     String movieId, {
-    String? status,
+    WatchStatus? status = WatchStatus.planned,
+    int? rating,
+    String? notes,
   }) async {
     try {
       final response = await http.post(
@@ -54,13 +56,18 @@ class WatchlistProvider with ChangeNotifier {
         },
         body: json.encode({
           'movieId': movieId,
-          if (status != null) 'status': status,
+          'status': status?.name.toUpperCase(),
+          'rating': ?rating,
+          'notes': ?notes,
         }),
       );
 
       if (response.statusCode == 201) {
         await fetchWatchlist(token);
         return true;
+      } else {
+        final body = json.decode(response.body);
+        _errorMessage = body['error'] ?? 'Kunde inte lägga till i watchlist';
       }
     } catch (error) {
       print('kunde inte lägga till i watchlist $error');
@@ -78,7 +85,7 @@ class WatchlistProvider with ChangeNotifier {
 
       if (response.statusCode == 200) {
         _watchlist.removeWhere((item) => item.id == watchlistItemId);
-        WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+        notifyListeners();
         return true;
       }
     } catch (error) {
@@ -91,7 +98,7 @@ class WatchlistProvider with ChangeNotifier {
   Future<bool> updateWatchlistItem(
     String token,
     String watchlistItemId, {
-    String? status,
+    WatchStatus? status,
     int? rating,
     String? notes,
   }) async {
@@ -103,9 +110,9 @@ class WatchlistProvider with ChangeNotifier {
           'Authorization': 'Bearer $token',
         },
         body: json.encode({
-          if (status != null) 'status': status,
-          if (rating != null) 'rating': rating,
-          if (notes != null) 'notes': notes,
+          'status': ?status?.name.toUpperCase(),
+          'rating': ?rating,
+          'notes': ?notes,
         }),
       );
 

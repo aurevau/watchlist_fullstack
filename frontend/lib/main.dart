@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:frontend/pages/auth_pages/auth_wrapper.dart';
-import 'package:frontend/pages/auth_pages/login_page.dart';
-import 'package:frontend/pages/auth_pages/register_page.dart';
 import 'package:frontend/providers/auth_provider.dart';
 import 'package:frontend/providers/movie_provider.dart';
 import 'package:frontend/providers/watchlist_provider.dart';

@@ -20,7 +20,7 @@ class MovieProvider with ChangeNotifier {
     _isLoading = true;
     _errorMessage = null;
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
 
     try {
       final response = await http.get(Uri.parse(moviesEndpoint));
@@ -30,7 +30,7 @@ class MovieProvider with ChangeNotifier {
         final movieJson = body['data']['movies'] as List;
         _movies = movieJson.map((m) => Movie.fromJson(m)).toList();
         _isLoading = false;
-        WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+        notifyListeners();
         return true;
       } else {
         _errorMessage = body['error'] ?? 'Kunde inte hämta filmer';
@@ -40,14 +40,18 @@ class MovieProvider with ChangeNotifier {
     }
 
     _isLoading = false;
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
     return false;
   }
 
   Future<bool> searchMovies(String query) async {
+    if (query.trim().isEmpty) {
+      return await getAllMovies();
+    }
+
     _isLoading = true;
     _errorMessage = null;
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
 
     try {
       final response = await http.get(Uri.parse(searchMoviesEndpoint(query)));
@@ -57,7 +61,7 @@ class MovieProvider with ChangeNotifier {
         final moviesJson = body['data']['movies'] as List;
         _movies = moviesJson.map((m) => Movie.fromJson(m)).toList();
         _isLoading = false;
-        WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+        notifyListeners();
         return true;
       } else {
         _errorMessage = body['error'] ?? 'Sökningen misslyckades';
@@ -66,14 +70,14 @@ class MovieProvider with ChangeNotifier {
       _errorMessage = 'Något gick fel: $error';
     }
     _isLoading = false;
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
     return false;
   }
 
   Future<bool> getMovieById(String id) async {
     _isLoading = true;
     _errorMessage = null;
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
 
     try {
       final response = await http.get(Uri.parse(movieDetailEndpoint(id)));
@@ -82,7 +86,7 @@ class MovieProvider with ChangeNotifier {
       if (response.statusCode == 200) {
         _selectedMovie = Movie.fromJson(body['data']['movie']);
         _isLoading = false;
-        WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+        notifyListeners();
         return true;
       } else {
         _errorMessage = body['error'] ?? 'Filmen hittades inte';
@@ -92,7 +96,7 @@ class MovieProvider with ChangeNotifier {
     }
 
     _isLoading = false;
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
     return false;
   }
 }

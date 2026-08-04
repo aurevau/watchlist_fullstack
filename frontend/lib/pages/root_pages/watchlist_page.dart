@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/components/movie_card.dart';
 import 'package:frontend/components/watchlist_item_card.dart';
 import 'package:frontend/models/watchlist_item.dart';
 import 'package:frontend/pages/root_pages/movie_detail_page.dart';
@@ -10,7 +9,7 @@ import 'package:provider/provider.dart';
 
 class WatchlistPage extends StatefulWidget {
   final ScrollController controller;
-  const WatchlistPage({Key? key, required this.controller}) : super(key: key);
+  const WatchlistPage({super.key, required this.controller});
 
   @override
   State<WatchlistPage> createState() => WatchlistPageState();
@@ -69,9 +68,9 @@ class WatchlistPageState extends State<WatchlistPage> {
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1,
-        crossAxisSpacing: 12,
+        crossAxisSpacing: 4,
         mainAxisSpacing: 12,
-        childAspectRatio: 0.50,
+        childAspectRatio: 0.65,
       ),
       itemBuilder: (_, i) {
         final movie = movies[i];
@@ -84,14 +83,6 @@ class WatchlistPageState extends State<WatchlistPage> {
                 listen: false,
               ).removeFromWatchlist(token, movie.id);
             }
-          },
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (_) => MovieDetailPage(movieId: movie.movie.id),
-              ),
-            );
           },
         );
       },
