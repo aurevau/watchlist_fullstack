@@ -49,7 +49,7 @@ class AuthProvider with ChangeNotifier {
     }
 
     _isLoading = false;
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
     return false;
   }
 
