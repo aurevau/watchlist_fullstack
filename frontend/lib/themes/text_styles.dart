@@ -1,6 +1,5 @@
 // Configure text styles
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 import 'package:frontend/themes/colors.dart';
 
 class AppTextStyles {
@@ -31,6 +30,12 @@ class AppTextStyles {
   static const TextStyle linkTextBlue = TextStyle(
     color: AppColors.primary,
     fontWeight: FontWeight.w500,
+    fontSize: 14,
+  );
+
+  static const TextStyle boldText = TextStyle(
+    color: AppColors.textColor,
+    fontWeight: FontWeight.w700,
     fontSize: 14,
   );
 
