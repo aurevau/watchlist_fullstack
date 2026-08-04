@@ -4,12 +4,16 @@ class InputTextField extends StatelessWidget {
   final String hintText;
   final bool isPassword;
   final TextEditingController? controller;
+  final int? maxLines;
+  final ValueChanged<String>? onChanged;
 
   const InputTextField({
     super.key,
+    this.maxLines = 1,
     required this.hintText,
     required this.isPassword,
     required this.controller,
+    this.onChanged,
   });
 
   @override
@@ -25,6 +29,7 @@ class InputTextField extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.only(left: 16),
           child: TextField(
+            onChanged: onChanged,
             controller: controller,
             obscureText: isPassword,
             decoration: InputDecoration(
