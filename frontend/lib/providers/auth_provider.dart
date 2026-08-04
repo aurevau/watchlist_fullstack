@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:frontend/models/user.dart';
 import 'package:frontend/utils/api_endpoints.dart';
@@ -23,8 +22,7 @@ class AuthProvider with ChangeNotifier {
     _isLoading = true;
     _errorMessage = null;
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
-
+    notifyListeners();
     try {
       final response = await http.post(
         Uri.parse(registerEndpoint),
@@ -40,7 +38,8 @@ class AuthProvider with ChangeNotifier {
         await _saveToken(_token!);
         _isLoading = false;
 
-        WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+        notifyListeners();
+
         return true;
       } else {
         _errorMessage = body['error'] ?? 'Registrering misslyckades';
@@ -57,7 +56,8 @@ class AuthProvider with ChangeNotifier {
   Future<bool> login(String email, String password) async {
     _isLoading = true;
     _errorMessage = null;
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+
+    notifyListeners();
 
     try {
       final response = await http.post(
@@ -74,7 +74,8 @@ class AuthProvider with ChangeNotifier {
         await _saveToken(_token!);
         await refreshUser();
         _isLoading = false;
-        WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+
+        notifyListeners();
         return true;
       } else {
         _errorMessage = body['error'] ?? 'Fel e-post eller lösenord';
@@ -84,7 +85,7 @@ class AuthProvider with ChangeNotifier {
     }
 
     _isLoading = false;
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
     return false;
   }
 
@@ -102,7 +103,7 @@ class AuthProvider with ChangeNotifier {
 
     final prefs = await SharedPreferences.getInstance();
     await prefs.remove('auth_token');
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
   }
 
   Future<void> tryAutoLogin() async {
@@ -132,7 +133,7 @@ class AuthProvider with ChangeNotifier {
       print('Autologin misslyckades: $error');
     }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
   }
 
   Future<void> refreshUser() async {
@@ -152,7 +153,7 @@ class AuthProvider with ChangeNotifier {
       print('Kunde inte uppdatera användardata: $error');
     }
 
-    WidgetsBinding.instance.addPostFrameCallback((_) => notifyListeners());
+    notifyListeners();
   }
 
   Future<void> _saveToken(String token) async {
